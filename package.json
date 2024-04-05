@@ -1,0 +1,21 @@
+{
+  "name": "parsing_apteka_911",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.7",
+    "cheerio": "^1.0.0-rc.12",
+    "node-telegram-bot-api": "^0.65.1",
+    "puppeteer": "^22.4.1",
+    "xlsx": "^0.18.5",
+    "xml2js": "^0.6.2"
+  }
+}
