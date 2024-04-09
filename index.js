@@ -75,11 +75,14 @@ async function scrapeApteka911() {
             await page.close();
             continue;
         }
-
-        await page.waitForSelector('#wrp-content > div.product-head-instr.tl > h1');
-        await page.waitForSelector('#main > div.shopping-conteiner > div.b__shopping > div.b-product__shopping.instruction.full > div:nth-child(1) > div > div > div');
-        await page.waitForSelector('#wrp-content > div.product-head-instr.tl > span');
-        await page.waitForSelector( '#main > table.product-parameters--card > tbody > tr:nth-child(14) > td:nth-child(2)');
+        try {
+            await page.waitForSelector('#wrp-content > div.product-head-instr.tl > h1');
+            await page.waitForSelector('#main > div.shopping-conteiner > div.b__shopping > div.b-product__shopping.instruction.full > div:nth-child(1) > div > div > div');
+            await page.waitForSelector('#wrp-content > div.product-head-instr.tl > span');   
+        } catch (error) {
+            return
+        }
+       // await page.waitForSelector( '#main > table.product-parameters--card > tbody > tr:nth-child(14) > td:nth-child(2)');
 
         const productData = await page.evaluate(() => {
             const nameElement = document.querySelector('#wrp-content > div.product-head-instr.tl > h1');
