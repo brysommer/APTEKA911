@@ -21,7 +21,11 @@ async function scrapeApteka911() {
 
     const urls = shopUrls;
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+        executablePath: '/usr/bin/chromium',
+         headless: true,
+         args: ['--no-sandbox', '--disable-setuid-sandbox'],
+     });
 
     sendTelegramMessage(`Парсинг розпочато. Всього посилань: ${urls.length}`);
 
@@ -80,6 +84,7 @@ async function scrapeApteka911() {
             await page.waitForSelector('#main > div.shopping-conteiner > div.b__shopping > div.b-product__shopping.instruction.full > div:nth-child(1) > div > div > div');
             await page.waitForSelector('#wrp-content > div.product-head-instr.tl > span');   
         } catch (error) {
+            sendTelegramMessage(` Неможливо завантажити розмітку${error}`)
             return
         }
        // await page.waitForSelector( '#main > table.product-parameters--card > tbody > tr:nth-child(14) > td:nth-child(2)');
